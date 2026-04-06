@@ -1,3 +1,4 @@
-# 2025-2026-4GP-SOLE-JANKOWSKI
+# 2025-2026-4GP-JANKOWSKI-SOLE
 
-# Initalisation of project on the 10th of february 2026
+## Developing a low-tech graphite based tecticle sensor
+
