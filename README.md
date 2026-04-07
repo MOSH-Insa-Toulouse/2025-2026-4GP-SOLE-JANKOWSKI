@@ -43,6 +43,7 @@ This project encompasses the full development cycle, including electronic simula
 • Resistors  
 • Rotary encoder (KY-040)  
 
-### I.Circuit Simulations on LTSpice
+### Circuit simulations on LTSpice
+As the objective of our project is to study the graphite-sensor, the measurement of the current flowing thorugh it will be rather low (nA), with a variable resistence in the order of gigaohm (GΩ) for a potential of 5V from the Arduino. Hence, we have implemented a transimpedence amplifier circuit which will give us the  
 
 
