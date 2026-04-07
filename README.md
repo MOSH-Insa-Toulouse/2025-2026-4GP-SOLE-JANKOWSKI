@@ -10,7 +10,8 @@
 
 •[Components used for the project](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/edit/main/README.md#components-used-for-the-project)
 
-•[I. LTSpice and Simulations](I. LTSpice and Simulations)
+•[Circuit simulations on LTSpice](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/edit/main/README.md#circuit-simulations-on-ltspice))
+
 ### Contact the developers
 Wiktor JANKOWSKI : jankowski@insa-toulouse.fr   
 Joan SOLÉ : sole-lohan@insa-toulouse.fr  
@@ -44,6 +45,6 @@ This project encompasses the full development cycle, including electronic simula
 • Rotary encoder (KY-040)  
 
 ### Circuit simulations on LTSpice
-As the objective of our project is to study the graphite-sensor, the measurement of the current flowing thorugh it will be rather low (nA), with a variable resistence in the order of gigaohm (GΩ) for a potential of 5V from the Arduino. Hence, we have implemented a transimpedence amplifier circuit which will give us the  
+As the objective of our project is to study the graphite-sensor, the measurement of the current flowing thorugh it will be rather low (nA), with a variable resistence in the order of gigaohm (GΩ) for a potential of 5V from the Arduino. Hence, we have implemented a transimpedence amplifier circuit which will convert the current in the graphite sensor into an exploitable voltage. The Arduino will then (...) 
 
 
