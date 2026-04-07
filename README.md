@@ -10,6 +10,7 @@
 
 •[Components used for the project](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/edit/main/README.md#components-used-for-the-project)
 
+•[I. LTSpice and Simulations](I. LTSpice and Simulations)
 ### Contact the developers
 Wiktor JANKOWSKI : jankowski@insa-toulouse.fr   
 Joan SOLÉ : sole-lohan@insa-toulouse.fr  
@@ -42,8 +43,6 @@ This project encompasses the full development cycle, including electronic simula
 • Resistors  
 • Rotary encoder (KY-040)  
 
-
-
-
+### I.Circuit Simulations on LTSpice
 
 
