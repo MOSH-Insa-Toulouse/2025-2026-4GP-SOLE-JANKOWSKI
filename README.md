@@ -10,7 +10,7 @@
 
 •[Components used for the project](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/edit/main/README.md#components-used-for-the-project)
 
-•[Circuit simulations on LTSpice](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/edit/main/README.md#circuit-simulations-on-ltspice))
+•[Circuit simulations on LTSpice](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/edit/main/README.md#circuit-simulations-on-ltspice)
 
 ### Contact the developers
 Wiktor JANKOWSKI : jankowski@insa-toulouse.fr   
