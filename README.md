@@ -49,7 +49,7 @@ As the objective of our project is to study the graphite-sensor, the measurement
 
 The Arduino will then (...) 
 
-!(/"C:\Users\wikko\Documents\Toulouse\MOSH_KiCad\ss_circuit_amplifier.png")
+![](./Images/ss_circuit_amplifier_2.png)
 
 
 In order to optimize the performance of the circuit, three filters are introduced.
@@ -60,6 +60,7 @@ In order to optimize the performance of the circuit, three filters are introduce
 
 Other information to keep in mind is that the R2 resistance is a digital potentiometer (MCP41050). Furthermore, the operationel amplifier LTC1050 will be used in our circuit, which has properties such as handling low input currents and low voltage offset.
 
-!(/"C:\Users\wikko\Documents\Toulouse\MOSH_KiCad\ss_circuit_snesor.png")
+![Figure 1](./Images/ss_circuit_sensor.png)
+
 
 ### KiCad development
