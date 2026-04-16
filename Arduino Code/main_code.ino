@@ -1,75 +1,97 @@
-
-//// LIBRARIES ////
+////   LIBRARIES   ////
+// Import display, graphics, and SPI communication libraries
 
 #include <Adafruit_SSD1306.h>
-#include <Adafruit_GFX.h> //FOR IMAGES
-#include <SPI.h>
+#include <Adafruit_GFX.h> //FOR GRAPHICS
+#include <SPI.h>          // COMMUNICATION WITH DIGITAL POTENTIOMETER
 
-//// PINS AND OLED DISPLAY ////
+////   PINS AND OLED DISPLAY   ////
+// Define all pins used for encoder, sensors, and OLED display
 
-#define encoder0PinA  3  //CLK Output A Do not use other pin for clock as we are using interrupt
-#define encoder0PinB  4  //DT Output B
-#define Switch 2 // Switch connection if available
+#define encoder0PinA  3   //CLK Output A Do not use other pin for clock as we are using interrupt
+#define encoder0PinB  4   //DT Output B
+#define Switch 2          // Switch connection if available
+
 #define pin_graphite_sensor A0
 #define pin_flex_sensor A1
 
-
+//OLED configuration
 #define width_OLED 128         
 #define height_OLED 64       
 #define reset_pin_OLED -1         
 #define address_I2C_OLED 0x3C        
 
 
-//POSITION VARIABLES
+////  GLOBAL VARIABLES ////
+// Store system state, electrical constants, and sensor parameters
 
+// Encoder and UI state
 volatile int button = 0;
-volatile int lastButton = 0;
 volatile int encoder0Pos = 1;
 
 int ValADC = 0;
+
+//Circuit values matching KiCad
 const int R1 = 100000;
 const int R3 = 100000;
 const int R5 = 1000;
 const int Vcc = 5;
 
+//Flex sensor calibration
+const float R_DIV = 45600;    // resistance used for dividing the voltage
+const float FlexflatR = 23800;  // resistance when flat
+const float FlexbendR = 60000;  // resistance at 90 deg
+
+
+//Digital potentiometer parameters
 volatile long resistanceWB = 6375;
 
 const byte csPin           = 10;      // MCP42100 chip select pin
-const int  maxPositions    = 256;     // wiper can move from 0 to 255 = 256 positions
-const long rAB             = 50000;   // 50k pot resistance between terminals A and B, 
-const byte pot_OFFSET      = 125;     // 125 ohms pot wiper resistance
-const byte pot0            = 0x11;    // pot0 addr // B 0001 0001
-const byte pot0Shutdown    = 0x21;    
-int potValue = 32;  // start in the middle (0–255) //prover a lage en global variable for bruk i potentiometre  HAS TO BE CHANGED
+const int  maxPositions    = 256;     // wiper moves between 0-255
+const long rAB             = 50000;   // 50k pot resistance between terminals A and B 
+const byte pot_OFFSET      = 125;     // 125 ohms pot wiper resistance (internal)
+const byte pot0            = 0x11;    // potentiometer address
+const byte pot0Shutdown    = 0x21; 
 
-//// ________OBJECT________ ////
+int potValue = 32;  // Initial potentioøeter value
+
+////   OBJECT   ////
 
 Adafruit_SSD1306 displayOLED(width_OLED, height_OLED, &Wire, reset_pin_OLED);
 
-////
+////   MENU   //// 
+// Define menu structure and available modes
 
 int menuSize = 3;
-
 int menuIndex = 0;
-String menuItems[3] = {"DigiPot","Mode","Link Github"};
+
+String menuItems[3] = {"DigiPot","Modes","Github"};
 
 int modeIndex = 0;
 String modes[2] = {"Graphite","Flex"};
 
+////   FUNCTIONS   ///
+// Function to set potentiometer value via SPI and compute resistance
 
-//// FUNCTIONS ///
 void setPotWiper(int addr, int pos) {
   
   pos = constrain(pos, 0, 255);            // limit wiper setting to range of 0 to 255
+  
   digitalWrite(csPin, LOW);                // select chip
   SPI.transfer(addr);                      // configure target pot with wiper position
   SPI.transfer(pos);
   digitalWrite(csPin, HIGH);               // de-select chip
 
+  //Calculate equivalent resistance
   resistanceWB = ((rAB * pos) / maxPositions ) + pot_OFFSET;
 }
 
+
+////   HANDLING THE ENCODER   ////
+// Interrupt routine to navigate menus and adjust parameters
 void doEncoder() {
+
+  //Here we navigate the main menu
   if (!button){
     if (digitalRead(encoder0PinA)==HIGH && digitalRead(encoder0PinB)==HIGH) {
       if (encoder0Pos < 3) encoder0Pos++;
@@ -79,6 +101,8 @@ void doEncoder() {
       else encoder0Pos = 3;
     }
   }
+
+  //Here we enter the submenu of DigiPot
   else if (encoder0Pos == 1){
     if (digitalRead(encoder0PinA)==HIGH && digitalRead(encoder0PinB)==HIGH) {
       potValue ++;
@@ -88,66 +112,77 @@ void doEncoder() {
     setPotWiper(pot0, potValue);
     Serial.print(potValue);
   }
+
+  //Here we enter the submenu of Modes
   else if (encoder0Pos == 2){
     modeIndex = !modeIndex;
   }
 } 
 
+////   SENSOR FUNCTIONS   ////
+
+//Analog reading of the graphite sensor voltage
 float ReadValueGraphite(){
   ValADC = analogRead(A0);
   return ValADC*Vcc/1023.0; // returns a value in volt
 }
 
+//Calculations of the graphite sensor resistance
 float GraphiteResistance(float Voltage){
-  if (Voltage < 0.01) return 0; // so there will be no division by 0
+  if (Voltage < 0.01) return 0; // Avoiding division by 0
   else return R1*(1+(R3)/(resistanceWB))*((Vcc)/(Voltage))-R1-R5; 
 }
 
+////   SETUP   ////
+// Initialize communication, peripherals, and hardware components
 
 void setup() { 
+
   Serial.begin(9600);
 
-  ////INITIALISING THE DIGITAL POTENTIOMETER////
-
+  // INITIALISING THE DIGITAL POTENTIOMETER
   digitalWrite(csPin, HIGH);        // chip select default to de-selected
   pinMode(csPin, OUTPUT);           // configure chip select as output
   SPI.begin();
+  
   delay(100);
   setPotWiper(pot0, potValue);
-  //// INITIALISING THE OLED SCREEN ////
 
+  //INITIALISING THE OLED SCREEN
   pinMode(encoder0PinA, INPUT); 
   digitalWrite(encoder0PinA, HIGH);       // turn on pullup resistor
   pinMode(Switch, INPUT_PULLUP);          //the button
   pinMode(encoder0PinB, INPUT); 
   digitalWrite(encoder0PinB, HIGH);       // turn on pullup resistor
+  pinMode(pin_flex_sensor, INPUT);
 
   attachInterrupt(digitalPinToInterrupt(encoder0PinA), doEncoder, RISING);
   
-    // Initialisation de l'écran OLED
+    // Initialising the OLED display
   if(!displayOLED.begin(SSD1306_SWITCHCAPVCC, address_I2C_OLED))
-    while(1);                               // Arrêt du programme (boucle infinie) si échec d'initialisation
-
-    displayOLED.display();                            // Transfert le buffer à l'écran
-    delay(2000); 
+    while(1);   
+                              
+  displayOLED.display();                         
+  delay(2000); 
 }
 
-void loop(){
+////   LOOP   ////
+// Handle user input, update display, and perform sensor measurements
 
-  ////OLED////
+void loop(){
   
+  // Switch between menu and submenu on button press
   if (!digitalRead(Switch)){
     button = !button;
     Serial.println(button);
   }
 
-  // the menu which contains the pages 
-
+  // Upfating the OLED
   screen_OLED();
 
-  ////ANALOG READ THE TWO SENSORS /////
-
+  //ANALOG READ THE TWO SENSORS
   if (modeIndex == 0) {
+    // Graphite sensor measurement
     float sensorValue = ReadValueGraphite();
     Serial.print("Graphite Vadc: ");
     Serial.println(sensorValue);
@@ -158,26 +193,35 @@ void loop(){
     Serial.print("Graphite Resistance: ");
     Serial.println(sensorResistance);
     }
+  
   else if (modeIndex == 1){
-    int flexValue = analogRead(A1); // example pin
-    Serial.print("Flex: ");
-    Serial.println(flexValue);
+    // Flex sensor measurement (may require calibration)
+    float ADCflexValue = analogRead(pin_flex_sensor);
+    float Vflex = ADCflexValue * (Vcc / 1023.0);
+    float Rflex = R_DIV * (Vcc / (Vflex - 1.0));
+    Serial.print("Flex sensor:");
+    Serial.println(Rflex);
   }
   delay(500);
 }
 
 
-//// DISPLAYING ON OLED ////
+////   DISPLAYING ON OLED   ////
+// Show menu and submenu content on the OLED screen
 
 void screen_OLED() {
   if (button == 0) {
     displayOLED.clearDisplay();
-    displayOLED.setTextSize(2);                   // Taille des caractères (1:1, puis 2:1, puis 3:1)
+    displayOLED.setTextSize(2);               
     displayOLED.setCursor(0, 0); 
-    displayOLED.setTextColor(SSD1306_WHITE);  
+    displayOLED.setTextColor(SSD1306_WHITE);
+
+    //Actual displayed names
     displayOLED.println("DigiPot");
     displayOLED.println("Modes");
-    displayOLED.println("GitHub Link");
+    displayOLED.println("GitHub");
+
+    //Highlighting the selected item on the menu
     if(encoder0Pos == 1) {
       displayOLED.setCursor(0, 0); 
       displayOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);   // Couleur du texte, et couleur du fond
@@ -195,7 +239,9 @@ void screen_OLED() {
       }
     }
   else {
+    // Submenu display
     if(encoder0Pos == 1) {
+      // DigiPot info
       displayOLED.clearDisplay();
       displayOLED.setCursor(0, 0);
       displayOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);   // Couleur du texte, et couleur du fond
@@ -208,10 +254,9 @@ void screen_OLED() {
 
       displayOLED.print("R (ohms): ");
       displayOLED.println(resistanceWB);
-
-      //displayOLED.display();
     }
     else if(encoder0Pos == 2) {
+      // Mode selection display
       displayOLED.clearDisplay();
       displayOLED.setCursor(0, 0);
       displayOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);   // Couleur du texte, et couleur du fond
@@ -220,16 +265,18 @@ void screen_OLED() {
       displayOLED.print("Mode: ");
       displayOLED.println(modes[modeIndex]);
 
-      //displayOLED.display();
       delay(200);
     }
     else if(encoder0Pos == 3) {
+      // GitHub link display
       displayOLED.clearDisplay();
       displayOLED.setCursor(0, 0);
       displayOLED.setTextColor(SSD1306_BLACK, SSD1306_WHITE);   // Couleur du texte, et couleur du fond
       displayOLED.setTextSize(1);
-      displayOLED.println("Moi je crois pas qu'il ait des bonne ou de mauvaise MOSH");
+      displayOLED.println("Project Repository : ");
+      displayOLED.println("https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI.git ");
     } 
   }
   displayOLED.display();
 }
+
