@@ -179,7 +179,7 @@ You can find the datasheet of the graphite sensor here[link].
 
 The purpose of this test bench is to determine the sensor's sensitivity, study its behavior, and then compare it to a commercial 'Flex-Sensor'. To achieve this, we used the following test bench, which consists of six circles with diameters ranging from 1.4 to 3.9 cm. This test bench was 3D printed.
 
-![Figure 15](./Images/banc-de-test.PNG)
+![Figure 15](./Images/banc-de-tests.PNG)
 
 This setup allows us to measure the relative change in resistance (ΔR/R₀) as a function of strain (ε), defined by the formula ε = e/D, where 'e' is the thickness of the sensor (in this case, the thickness of the paper sheet, which is 0.2 mm) and 'D' is the diameter of the specific circle.
 
