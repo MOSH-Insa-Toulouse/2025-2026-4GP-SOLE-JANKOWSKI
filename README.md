@@ -28,7 +28,7 @@ The aim of this project is to study a low-tech graphite-based tactile sensor. Th
 
 The research states that graphite pencil traces left on paper can act as strain gauges. As the strain is applied, the graphite structure changes, which in turn modifies the electrical resistance in the material.
 
-A PCB was developed from scratch in order to study the graphite-based sensor which was then controlled via an Arduino UNO. The main purpose of the board is to amplify the very weak current flowing through the graphite-based sensor. Furthermore, a digital potentiometer was integrated into the circuit, allowing fine tuning of the measurement setup. In addition, a commercial flex sensor was added, whose resistance varies with the angle, providing a comparative reference for our low-tech counterpart. For practical reasons, a Bluetooth component will serve as a means of transmitting the data collected throughout the usage, as well as an OLED screen that will display (...) 
+A PCB was developed from scratch in order to study the graphite-based sensor which was then controlled via an Arduino UNO. The main purpose of the board is to amplify the very weak current flowing through the graphite-based sensor. Furthermore, a digital potentiometer was integrated into the circuit, allowing fine tuning of the measurement setup. In addition, a commercial flex sensor was added, whose resistance varies with the angle, providing a comparative reference for our low-tech counterpart. For practical reasons, a Bluetooth component will serve as a means of transmitting the data collected throughout the usage, as well as an OLED screen that will display a menu for the user. 
 
 This project encompasses the full development cycle, including electronic simulations in LTSpice, PCB design with KiCad, Arduino programming, application development using MIT App Inventor, and the creation of a technical datasheet.
 
@@ -47,7 +47,7 @@ This project encompasses the full development cycle, including electronic simula
   - Arduino Uno  
   - Bluetooth module (HC-05)  
   - Capacitors (1µF and 100nF)
-  - Digital potentiometer (MCP41050)  
+  - Digital potentiometer (MCP41010)  
   - Flex sensor  
   - Graphite-based paper sensor  
   - OLED display  
@@ -190,6 +190,17 @@ To prevent signal saturation, we dynamically adjusted the amplification using th
 
 
 ![Figure 17](./Images/compressive%20deflections.png)
+
+---
+### Conclusion
+
+The project demostrates that a simple piece of paper with a pencil can be used as a strain sensor when combined with appropriate electronics. Using modelling and simulating software we successfully designed and assembled a complete measurement system. We arrive at the expected results with a system that increases resistance under tension and decreases under compression.
+
+However, the measurements are rarely reproducible, with a significatn dependence on both the deposited amount and homogenity of the applied graphene. Another important factor is the manual preparation of the PCB, which may potentially add problems and cause the developer to restart the PCB manufacturing process. 
+
+Despite these limitations, the project has strong educational potential and value. It must also be mentioned that the costs are in the lower range and dont need any complex and expensive devices for creating our own measurement system. Adding complexity to this sensor is not a necessity and would even leave the goal of building a lowtech sensor, yet we could see potential in adding a process for making the system of measurements more robust.
+
+All in all, the low tech graphite sensor is simply not trustworthy for industrialisation. We belive that the question should rather be : can this be used for educational purposes? Here the answer is yes. We have learned a lot, and futur engineers in different domains, could do the same.
 
 ---
 ### Contact the developers 
