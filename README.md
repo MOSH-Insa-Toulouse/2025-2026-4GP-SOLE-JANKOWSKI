@@ -185,7 +185,10 @@ This setup allows us to measure the relative change in resistance (ΔR/R₀) as 
 
 We conducted tests to evaluate their performance under both tensile and compressive strain. Additionally, we used three different pencil grades (6B, 3B, and HB) to observe how the graphite's tone impacts the sensor's sensitivity, as well as its relationship to graphite density and the availability of conductive pathways.
 To prevent signal saturation, we dynamically adjusted the amplification using the digital potentiometer, ensuring a baseline reading of 2.5 VDC when the sensor was perfectly flat.
+
 ![Figure 16](./Images/tensile%20deflections.png)
+
+In this figure we
 ![Figure 17](./Images/compressive%20deflections.png)
 
 ---
