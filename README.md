@@ -156,6 +156,7 @@ See the code [here](./Arduino%20Code/main_code.ino) for further information on e
 ### Application
 To characterize and compare the commercial Flex sensor with our custom graphite sensor in real-time, we developed a mobile application using MIT App Inventor [Link]. As shown in the figure below, the intuitive interface consists of:
 ![Figure 12](./Images/Screen%20interface.png)
+
 Bluetooth Connection: A button to connect and view the list of available devices.
 Real-time Plotting: Three indicators displaying values for the digital potentiometer (adjusted by the rotary encoder and OLED), the flex sensor resistance, and the graphite sensor resistance. real-time graph that visualizes data from either the flex sensor or the graphite sensor, depending on the operation mode selected on the OLED
 ![Figure 13-Bluetooth control and variables definition](./Images/Bluthooth%20control%20app.png)
