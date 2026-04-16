@@ -159,7 +159,9 @@ To characterize and compare the commercial Flex sensor with our custom graphite 
 Bluetooth Connection: A button to connect and view the list of available devices.
 Real-time Plotting: Three indicators displaying values for the digital potentiometer (adjusted by the rotary encoder and OLED), the flex sensor resistance, and the graphite sensor resistance. real-time graph that visualizes data from either the flex sensor or the graphite sensor, depending on the operation mode selected on the OLED
 ![Figure 13-Bluetooth control and variables definition](./Images/Bluthooth%20control%20app.png)
+These are the blocs used to open Bluethooth communication with our Bluetooth Module HC05 and initiate some variables.
 ![Figure 13-Data plotting and communication](./Images/Valueandgraphcontolapk.png)
+These ones are in charge of the real time plotting and sequenciation of date recived.
 
 ### Datasheet
 You can find the datasheet of the graphite sensor here[link].
@@ -170,8 +172,8 @@ This setup allows us to measure the relative change in resistance (ΔR/R₀) as 
 
 We conducted tests to evaluate their performance under both tensile and compressive strain. Additionally, we used three different pencil grades (6B, 3B, and HB) to observe how the graphite's tone impacts the sensor's sensitivity, as well as its relationship to graphite density and the availability of conductive pathways.
 To prevent signal saturation, we dynamically adjusted the amplification using the digital potentiometer, ensuring a baseline reading of 2.5 VDC when the sensor was perfectly flat.
-
-
+https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/blob/main/Images/tensile%20deflections.png
+https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/blob/main/Images/compressive%20deflections.png
 
 ---
 ### Contact the developers 
