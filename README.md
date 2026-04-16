@@ -188,7 +188,7 @@ To prevent signal saturation, we dynamically adjusted the amplification using th
 
 ![Figure 16](./Images/tensile%20deflections.png)
 
-In this figure we
+
 ![Figure 17](./Images/compressive%20deflections.png)
 
 ---
