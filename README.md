@@ -177,7 +177,7 @@ These ones are in charge of the real time plotting and sequenciation of date rec
 
 ### Datasheet
 
-You can find the datasheet of the graphite sensor here[link].
+You can find the datasheet of the graphite sensor [here](https://github.com/MOSH-Insa-Toulouse/2025-2026-4GP-SOLE-JANKOWSKI/blob/main/Graphite%20Strain%20Sensor%20Datasheet.pdf).
 
 ### Test Bench
 
