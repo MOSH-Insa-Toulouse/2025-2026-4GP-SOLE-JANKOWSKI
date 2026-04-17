@@ -17,7 +17,13 @@
 
 - [Arduino code](#arduino-code)
 
-- []()
+- [Bluetooth Mobile Application](#bluetooth-mobile-application)
+
+- [Datasheet](#datasheet)
+
+- [Test bench](#test-bench)
+
+- [Concluision](#conclusion)
 
 - [Contact the developers](#contact-the-developers)
 
@@ -154,7 +160,7 @@ We have used the following libraries to ensure compatibility with our hardware.
 
 See the code [here](./Arduino%20Code/main_code.ino) for further information on each part of the code
 
-### Application
+### Bluetooth Mobile Application
 
 To characterize and compare the commercial Flex sensor with our custom graphite sensor in real-time, we developed a mobile application using MIT App Inventor [Link]. As shown in the figure below, the intuitive interface consists of:
 
@@ -200,7 +206,9 @@ However, the measurements are rarely reproducible, with a significatn dependence
 
 Despite these limitations, the project has strong educational potential and value. It must also be mentioned that the costs are in the lower range and dont need any complex and expensive devices for creating our own measurement system. Adding complexity to this sensor is not a necessity and would even leave the goal of building a lowtech sensor, yet we could see potential in adding a process for making the system of measurements more robust.
 
-All in all, the low tech graphite sensor is simply not trustworthy for industrialisation. We belive that the question should rather be : can this be used for educational purposes? Here the answer is yes. We have learned a lot, and futur engineers in different domains, could do the same.
+All in all, the low tech graphite sensor is simply not trustworthy for industrialisation using a simple graphene pencil. On the other hand, the reasearchers on which we have based us on, have shown that liquid deposits, of rather expensive materials such as carbon nanotubes are more robust and give reproducible measurements.
+
+We belive that the question should rather be : can this be used for educational purposes? Here the answer is yes. We have learned a lot, and futur engineers in different domains, could do the same. We have shown that environementally friendly solutions are possible and should be investigeted further. 
 
 ---
 ### Contact the developers 
