@@ -17,7 +17,11 @@
 
 - [Arduino code](#arduino-code)
 
-- []()
+- [Application](#application)
+
+- [Datasheet](#datasheet)
+
+- [Test bench](#test-bench)
 
 - [Contact the developers](#contact-the-developers)
 
@@ -190,6 +194,11 @@ To prevent signal saturation, we dynamically adjusted the amplification using th
 
 
 ![Figure 17](./Images/compressive%20deflections.png)
+
+The plotted graphs demonstrate that the sensor's behaviour is coherent with the theory of 
+current available pathways: tensile strain increases resistance by pulling graphite particles apart, 
+whereas compressive strain lowers resistance by pushing them together. Additionally, the data 
+clearly shows that harder pencils like HB are substantially more sensitive than softer 6B pencils.
 
 ---
 ### Conclusion
