@@ -114,7 +114,7 @@ Figure 5: Electrical footprint
 Additionally, we had 3D models associated with footprints, enabling visualisation of the final PCB.
 
 ![Figure 6](./Images/pcb_3d.png)
-Figure 6: 3D image of the conceived PCB
+Figure 6: 3D image of the conceived PCB created
 
 Finally came the most tricky part, *routing*. We had to place the components strategically, as to minimize the use of vias and connect all of the components, which sounds easier said than done.This part also includes adding the specific drilling size to match the physical components.
 
