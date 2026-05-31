@@ -48,7 +48,7 @@ volatile long resistanceWB = 6375;
 
 const byte csPin           = 10;      // MCP42100 chip select pin
 const int  maxPositions    = 256;     // wiper moves between 0-255
-const long rAB             = 50000;   // 50k pot resistance between terminals A and B 
+const long rAB             = 10000;   // 50k pot resistance between terminals A and B 
 const byte pot_OFFSET      = 125;     // 125 ohms pot wiper resistance (internal)
 const byte pot0            = 0x11;    // potentiometer address
 const byte pot0Shutdown    = 0x21; 

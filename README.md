@@ -68,7 +68,7 @@ This project encompasses the full development cycle, including electronic simula
 ### Circuit simulations on LTSpice
 As the objective of our project is to study the graphite-sensor, the measurement of the current flowing through it will be rather low (nA), with a variable resistance in the order of gigaohm (GΩ) for a potential of 5V from the Arduino. Hence, we have implemented a transimpedence amplifier circuit which will convert the current in the graphite sensor into a measurable voltage. 
 
-![Figure 1](/Images/ss_circuit_amplificateur_c.png)
+![Figure 1](./Images/ss_circuit_amplificateur_c.png)
 Figure 1 : Amplifier circuit designed in LTSpice
 
 In order to optimize the performance of the circuit, three filters are introduced.
@@ -113,7 +113,7 @@ Figure 5: Electrical footprint
 
 Additionally, we had 3D models associated with footprints, enabling visualisation of the final PCB.
 
-![Figure 6](/Images/pcb_3d.png)
+![Figure 6](./Images/pcb_3d.png)
 
 Finally came the most tricky part, *routing*. We had to place the components strategically, as to minimize the use of vias and connect all of the components, which sounds easier said than done.This part also includes adding the specific drilling size to match the physical components.
 
